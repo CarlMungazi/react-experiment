@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-import { Input } from "../../component";
+import { Input } from "components";
 
 function SearchInput() {
   return (

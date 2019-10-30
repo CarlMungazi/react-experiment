@@ -11,6 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:nowatch": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint -c .eslintrc.json --fix \"src/*.js\" \"src/**/*.js\""
   },
@@ -31,11 +32,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm t",
-      "pre-commit": "npm run lint"
+      "pre-push": "yarn run test:nowatch",
+      "pre-commit": "yarn run lint"
     }
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.5.0",

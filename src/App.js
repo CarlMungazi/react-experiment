@@ -1,12 +1,15 @@
 import React from "react";
-import { SearchInput } from "./features";
+import { SearchInput, Explainer } from "./features";
 import "./App.css";
 
 function App() {
   return (
-    <section className="api-search">
-      <SearchInput />
-    </section>
+    <div className="flex-ns vh-100 items-center">
+      <section className="ma-auto mw6">
+        <Explainer/>
+        <SearchInput />
+      </section>
+    </div>
   );
 }
 

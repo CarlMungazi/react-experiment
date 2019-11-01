@@ -1,3 +1,4 @@
 import SearchInput from "./search";
+import Explainer from "./explainer";
 
-export { SearchInput };
+export { SearchInput, Explainer };

@@ -1,0 +1,101 @@
+:root {
+  --animation-duration: .7s;
+}
+
+.search {
+	margin-top: 10px;
+	width: 100%;
+	height: 60px;
+	-webkit-transition: width var(--animation-duration) ease-in;
+	-moz-transition: width var(--animation-duration) ease-in;
+	transition: width var(--animation-duration) ease-in;
+  display: flex;
+  justify-content: center;
+}
+
+.search-input {
+	outline: none;
+	background: #fff;
+	width: 0%;
+	height: 60px;
+	margin: 0;
+	z-index: 10;
+	font-family: inherit;
+	font-size: 20px;
+  color: #2c3e50;
+  padding: 0;
+  border: none;
+  -webkit-transition: width var(--animation-duration) ease-in;
+	-moz-transition: width var(--animation-duration) ease-in;
+  transition: width var(--animation-duration) ease-in;
+}
+
+.search-input::-webkit-input-placeholder {
+	color: #efb480;
+}
+
+.search-input:-moz-placeholder {
+	color: #efb480;
+}
+
+.search-input::-moz-placeholder {
+	color: #efb480;
+}
+
+.search-input:-ms-input-placeholder {
+	color: #efb480;
+}
+
+.search-button {
+	width: 60px;
+	height: 60px;
+	display: block;
+	padding: 0;
+	margin: 0;
+	line-height: 60px;
+	text-align: center;
+	cursor: pointer;
+	color: #fff;
+  background-color: #e67e22;
+  -webkit-transition: background-color var(--animation-duration);
+	-moz-transition: background-color var(--animation-duration);
+  transition: background-color var(--animation-duration);
+  outline: none;
+}
+
+/* Open state */
+.search.search-open {
+	width: 100%;
+}
+
+.search.search-open .search-button {
+	background-color: blue;
+  -webkit-transition: background-color var(--animation-duration);
+	-moz-transition: background-color var(--animation-duration);
+  transition: background-color var(--animation-duration);
+	color: #fff;
+}
+
+.search.search-open .search-button svg {
+  transform: rotate(45deg);
+  -webkit-transition: transform var(--animation-duration);
+	-moz-transition: transform var(--animation-duration);
+  transition: transform var(--animation-duration);
+}
+
+.search-button svg {
+  -webkit-transition: transform var(--animation-duration);
+	-moz-transition: transform var(--animation-duration);
+  transition: transform var(--animation-duration);
+}
+
+.search-open .search-input {
+  width: 100%;
+  padding: 20px;
+  -webkit-transition: width var(--animation-duration) ease-in;
+	-moz-transition: width var(--animation-duration) ease-in;
+  transition: width var(--animation-duration) ease-in;
+  border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+}

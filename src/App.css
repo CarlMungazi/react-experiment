@@ -1,3 +1,16 @@
+/* Tachyon modifiers */
+
+/* margins */
 .ma-auto {
   margin: 0 auto;
+}
+
+/* svgs */
+.fill-blue {
+  fill: #357EDD;
+}
+
+/* input */
+.placeholder-white::placeholder {
+  color: rgba(255,255,255, .5);
 }

@@ -22,7 +22,7 @@
 	font-family: inherit;
 	font-size: 20px;
   padding: 0;
-  transition: width var(--transition-duration);
+  transition: width var(--transition-duration), padding-left var(--transition-duration);
 }
 
 .search-input::placeholder {
@@ -55,7 +55,8 @@
 
 .search-open .search-input {
   width: 100%;
-  transition: width var(--transition-duration);
+	transition: width var(--transition-duration);
+	padding-left: 10px;
 }
 
 .search-open .search-input::placeholder {

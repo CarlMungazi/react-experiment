@@ -1,8 +1,19 @@
-/* Tachyon modifiers */
+/* all rem values based on 16px root font */
 
-/* margins */
+:root {
+	--transition-duration: 1s;
+	--trans-delay-placeholder: .5s;
+}
+
+/* TACHYON MODIFIERS */
+
+/* SPACING */
 .ma-auto {
   margin: 0 auto;
+}
+
+.pl--10 { /* 10px */
+  padding-left: 0.625rem; 
 }
 
 /* svgs */
@@ -10,7 +21,66 @@
   fill: #357EDD;
 }
 
-/* input */
+/* FORMS */
 .placeholder-white::placeholder {
   color: rgba(255,255,255, .5);
+}
+
+/* z-index */
+.z-10 {
+  z-index: 10;
+}
+
+.f-20 { /* 20px */
+  font-size: 1.25rem 
+}
+
+/* WIDTH */
+.w0 {
+  width: 0%;
+}
+
+.minw-60 {
+  min-width: 3.75rem;
+}
+
+/* OPACITY */
+.o-0-placeholder {
+  opacity: 0;
+}
+
+.o-100-placeholder {
+  opacity: 1;
+}
+
+/**
+  ANIMATIONS 
+**/
+
+/* properties */
+.trans-w {
+  transition-property: width;
+}
+
+.trans-transform {
+  transition-property: transform;
+}
+
+.trans-pl {
+  transition-property: padding-left;
+}
+
+.trans-o,
+.trans-o-placeholder::placeholder {
+  transition-property: opacity;
+}
+
+/* duration */
+.trans-duration,
+.trans-duration-placeholder::placeholder {
+  transition-duration: var(--transition-duration);
+}
+
+.trans-delay-placeholder::placeholder {
+  transition-delay: var(---trans-delay-placeholder);
 }

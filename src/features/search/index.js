@@ -1,11 +1,35 @@
-import React, { useState, createRef } from "react";
+import React, { useState, createRef, useEffect } from "react";
 import "./index.css";
 
+import { useDebounce, api } from "utils";
 import { Input, Button } from "components";
 
 function SearchInput() {
   const [inputValue, setInputValue] = useState("");
+  const [searchResults, setSearchResults] = useState([]); // eslint-disable-line
+  const [isSearching, setIsSearching] = useState(false);  // eslint-disable-line
+  const debouncedSearchTerm = useDebounce(inputValue, 500);
   const divRef = createRef();
+
+  useEffect(() => {
+    async function fetchData() {
+      if (debouncedSearchTerm) {
+        setIsSearching(true);
+
+        const results = await api(
+          `https://api.agify.io/?name=${debouncedSearchTerm}`
+        ).catch(err => {
+          console.log(err); // eslint-disable-line
+        });
+        setSearchResults(results);
+        setIsSearching(false);
+      } else {
+        setSearchResults([]);
+      }
+    }
+
+    fetchData();
+  }, [debouncedSearchTerm]);
 
   return (
     <div className="w-100 mt3 flex justify-center h3 search" ref={divRef}>

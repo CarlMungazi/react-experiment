@@ -8,7 +8,7 @@ function SearchInput() {
   const [inputValue, setInputValue] = useState("");
   const [searchResults, setSearchResults] = useState([]); // eslint-disable-line
   const [isSearching, setIsSearching] = useState(false);  // eslint-disable-line
-  const debouncedSearchTerm = useDebounce(inputValue, 500);
+  const debouncedSearchTerm = useDebounce(inputValue, 1000);
   const divRef = createRef();
 
   useEffect(() => {

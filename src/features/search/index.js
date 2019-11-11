@@ -1,12 +1,13 @@
 import React, { useState, createRef, useEffect } from "react";
-import "./index.css";
+import PropTypes from "prop-types";
 
+import "./index.css";
 import { useDebounce, api } from "utils";
+import { withAppContext } from "state";
 import { Input, Button } from "components";
 
-function SearchInput() {
+function SearchInput({ store }) {
   const [inputValue, setInputValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]); // eslint-disable-line
   const [isSearching, setIsSearching] = useState(false);  // eslint-disable-line
   const debouncedSearchTerm = useDebounce(inputValue, 1000);
   const divRef = createRef();
@@ -17,14 +18,15 @@ function SearchInput() {
         setIsSearching(true);
 
         const results = await api(
-          `https://api.agify.io/?name=${debouncedSearchTerm}`
+          `https://api.carbonintensity.org.uk/regional/postcode/${debouncedSearchTerm}`
         ).catch(err => {
           console.log(err); // eslint-disable-line
         });
-        setSearchResults(results);
+        store.setSearchResults(results);
         setIsSearching(false);
       } else {
-        setSearchResults([]);
+        // this clause triggers a re-render
+        store.setSearchResults([]);
       }
     }
 
@@ -67,4 +69,10 @@ function SearchInput() {
   );
 }
 
-export default SearchInput;
+SearchInput.propTypes = {
+  store: PropTypes.shape({
+    setSearchResults: PropTypes.func.isRequired
+  }).isRequired
+};
+
+export default withAppContext(SearchInput);

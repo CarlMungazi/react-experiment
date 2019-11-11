@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchInput, Explainer } from "./features";
+import { SearchInput, Explainer, SearchResult } from "./features";
 import "./App.css";
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
       <section className="ma-auto mw6">
         <Explainer />
         <SearchInput />
+        <SearchResult />
       </section>
     </div>
   );

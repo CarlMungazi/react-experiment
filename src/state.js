@@ -1,8 +1,9 @@
 import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
+// if not using the useContext hook, you can use this approach
 export const withAppContext = Component => props => (
   <AppContext.Consumer>
     {store => <Component {...props} store={store} />}

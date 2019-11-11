@@ -1,16 +1,16 @@
-import React, { useState, createRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, createRef, useEffect, useContext } from "react";
 
 import "./index.css";
 import { useDebounce, api } from "utils";
-import { withAppContext } from "state";
+import { AppContext } from "state";
 import { Input, Button } from "components";
 
-function SearchInput({ store }) {
+function SearchInput() {
   const [inputValue, setInputValue] = useState("");
   const [isSearching, setIsSearching] = useState(false);  // eslint-disable-line
   const debouncedSearchTerm = useDebounce(inputValue, 1000);
   const divRef = createRef();
+  const store = useContext(AppContext);
 
   useEffect(() => {
     async function fetchData() {
@@ -41,6 +41,7 @@ function SearchInput({ store }) {
         placeholder="What are you searching for today?"
         id="search"
         value={inputValue}
+        // add validation to remove spaces
         onChange={e => setInputValue(e.target.value)}
       />
       <Button
@@ -69,10 +70,4 @@ function SearchInput({ store }) {
   );
 }
 
-SearchInput.propTypes = {
-  store: PropTypes.shape({
-    setSearchResults: PropTypes.func.isRequired
-  }).isRequired
-};
-
-export default withAppContext(SearchInput);
+export default SearchInput;

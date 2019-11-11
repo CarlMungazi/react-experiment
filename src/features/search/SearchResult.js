@@ -1,15 +1,17 @@
 /* eslint-disable */
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "./SearchResult.css";
 
-import { withAppContext } from "state";
+import { AppContext } from "state";
 
-const SearchResult = ({ store }) => {
+const SearchResult = () => {
+  const store = useContext(AppContext);
+
   // can use optional chaining here
   if (store.searchResults.data) {
     const generation = store.searchResults.data[0];
-    console.log(generation);
+    
     return (
       <div className="">
         <p>
@@ -44,4 +46,4 @@ SearchResult.propTypes = {};
 
 SearchResult.defaultProps = {};
 
-export default withAppContext(SearchResult);
+export default SearchResult;

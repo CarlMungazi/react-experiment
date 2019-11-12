@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="flex-ns vh-100 items-center">
+    <div className="flex-ns items-center">
       <section className="ma-auto mw6">
         <Explainer />
         <SearchInput />

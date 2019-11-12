@@ -1,3 +1,7 @@
+.search {
+	transform: translate3d(0, 25%, 0)
+}
+
 .search-input {
 	width: 0%;
 	padding: 0;
@@ -9,6 +13,10 @@
 }
 
 /* Open state */
+
+.search--showResults {
+	transform: translate3d(0, 0, 0)
+}
 
 .search--open .search-button svg {
   transform: rotate(45deg);
@@ -22,5 +30,5 @@
 
 .search--open .search-input::placeholder {
 	opacity: 1;
-	transition-delay: var(--trans-delay-placeholder);
+	transition-delay: var(--trans-delay);
 }

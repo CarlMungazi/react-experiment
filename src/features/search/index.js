@@ -13,6 +13,7 @@ function SearchInput() {
   const store = useContext(AppContext);
 
   useEffect(() => {
+    const containerEl = divRef.current;
     async function fetchData() {
       if (debouncedSearchTerm) {
         setIsSearching(true);
@@ -23,6 +24,7 @@ function SearchInput() {
           console.log(err); // eslint-disable-line
         });
         store.setSearchResults(results);
+        containerEl.classList.add("search--showResults");
         setIsSearching(false);
       } else {
         // this clause triggers a re-render
@@ -34,7 +36,10 @@ function SearchInput() {
   }, [debouncedSearchTerm]);
 
   return (
-    <div className="w-100 mt3 flex justify-center h3 search" ref={divRef}>
+    <div
+      className="w-100 mt3 flex justify-center h3 trans-transform trans-duration-half search"
+      ref={divRef}
+    >
       <Input
         type="search"
         className="bg-light-red white placeholder-white bn outline-0 h-100 ma0 z-10 f-20 trans-o-placeholder trans-duration-placeholder trans-duration search-input"
@@ -55,6 +60,7 @@ function SearchInput() {
           }
 
           divRef.current.classList.toggle("search");
+          divRef.current.classList.remove("search--showResults");
         }}
         type="button"
       >

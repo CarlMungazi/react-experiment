@@ -20,7 +20,7 @@ export function useDebounce(value, delay) {
 
   return debouncedValue;
 }
-
+// can turn this into a custom hook with https://scotch.io/tutorials/create-a-custom-usefetch-react-hook
 export async function api(url, method = "get") {
   const [err, res] = await errorWrapper(
     fetch(url, {

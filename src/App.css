@@ -1,8 +1,9 @@
 /* all rem values based on 16px root font */
 
 :root {
+  --transition-duration-half: .5s;
 	--transition-duration: 1s;
-	--trans-delay-placeholder: .5s;
+	--trans-delay: .5s;
 }
 
 /* TACHYON MODIFIERS */
@@ -44,6 +45,10 @@
   min-width: 3.75rem;
 }
 
+.flex-basis-50 {
+  flex-basis: 50%;
+}
+
 /* OPACITY */
 .o-0-placeholder {
   opacity: 0;
@@ -81,6 +86,11 @@
   transition-duration: var(--transition-duration);
 }
 
+.trans-duration-half {
+  transition-duration: var(--transition-duration-half);
+}
+
+.trans-delay,
 .trans-delay-placeholder::placeholder {
-  transition-delay: var(---trans-delay-placeholder);
+  transition-delay: var(--trans-delay);
 }

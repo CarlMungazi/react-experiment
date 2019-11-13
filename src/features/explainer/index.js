@@ -9,6 +9,12 @@ function Explainer() {
       <p className="ma0">
         This is where the text for the API explanation will live.
       </p>
+      <span>
+        All icons by
+        <a target="_blank" rel="noopener noreferrer" href="https://icons8.com">
+          Icons8
+        </a>
+      </span>
     </Card>
   );
 }

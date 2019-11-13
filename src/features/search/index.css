@@ -1,5 +1,5 @@
 .search {
-	transform: translate3d(0, 25%, 0)
+	transform: translate3d(0, 40%, 0)
 }
 
 .search-input {
@@ -25,7 +25,7 @@
 .search--open .search-input {
 	width: 100%;
 	transition-property: width;
-	padding-left: 10px;
+	padding-left: .5rem;
 }
 
 .search--open .search-input::placeholder {

@@ -7,7 +7,6 @@ import { Input, Button } from "components";
 
 function SearchInput() {
   const [inputValue, setInputValue] = useState("");
-  const [isSearching, setIsSearching] = useState(false);  // eslint-disable-line
   const debouncedSearchTerm = useDebounce(inputValue, 1000);
   const divRef = createRef();
   const store = useContext(AppContext);
@@ -16,16 +15,19 @@ function SearchInput() {
     const containerEl = divRef.current;
     async function fetchData() {
       if (debouncedSearchTerm) {
-        setIsSearching(true);
+        store.setIsLoading(true);
 
         const results = await api(
           `https://api.carbonintensity.org.uk/regional/postcode/${debouncedSearchTerm}`
         ).catch(err => {
           console.log(err); // eslint-disable-line
         });
-        store.setSearchResults(results);
-        containerEl.classList.add("search--showResults");
-        setIsSearching(false);
+
+        setTimeout(() => {
+          store.setSearchResults(results);
+          containerEl.classList.add("search--showResults");
+          store.setIsLoading(false);
+        }, 2000);
       } else {
         // this clause triggers a re-render
         store.setSearchResults([]);

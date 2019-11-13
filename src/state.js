@@ -13,12 +13,15 @@ export const withAppContext = Component => props => (
 // this non-performant because every state change triggers a re-render of the children
 export const AppStore = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <AppContext.Provider
       value={{
         searchResults,
-        setSearchResults
+        setSearchResults,
+        isLoading,
+        setIsLoading
       }}
     >
       {children}

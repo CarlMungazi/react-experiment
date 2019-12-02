@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
 
 import "./SearchResult.css";
+
 import gas from 'assets/gas.png';
 import hydro from 'assets/hydro.png';
 import biomass from 'assets/biomass.png';
@@ -14,6 +14,7 @@ import imports from 'assets/imports.png';
 import coal from 'assets/coal.png';
 
 import { AppContext } from "state";
+import { Loader } from 'components';
 
 const ICONS = {
   wind,
@@ -50,7 +51,6 @@ const SearchResult = () => {
     const generation = store.searchResults.data[0];
     
   // maybe have one div and change classname and only show content when data exists
-
     return (
       <section className="results--show o-100 trans-duration-half trans-delay br3 bg-white pa3 mt4">
         <div className="flex flex-wrap justify-between">
@@ -71,7 +71,8 @@ const SearchResult = () => {
     <section className="results--hide o-0 trans-duration-half" />
     {/* turn into component & add logic to show different loaders each time */}
     {/* also need to add logic to artificially delay api response so loader is shown. possible hook use? */}
-    { store.isLoading && <div className="loader" /> }
+    { store.isLoading && <Loader variant="bars" /> }
+    {/* <Loader variant="bars" /> */}
     </>
   );
 };

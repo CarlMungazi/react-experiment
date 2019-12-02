@@ -58,6 +58,12 @@
   opacity: 1;
 }
 
+/* COLORS */
+.bg-white:before,
+.bg-white:after {
+  background-color: #fff;
+} 
+
 /**
   ANIMATIONS 
 **/

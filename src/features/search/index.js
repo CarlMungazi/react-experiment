@@ -14,23 +14,36 @@ function SearchInput() {
   useEffect(() => {
     const containerEl = divRef.current;
     async function fetchData() {
+      // need to properly handle the different loading & error states
       if (debouncedSearchTerm) {
+        store.setSearchResults([]);
+        store.setError(false);
         store.setIsLoading(true);
 
         const results = await api(
           `https://api.carbonintensity.org.uk/regional/postcode/${debouncedSearchTerm}`
         ).catch(err => {
+          // no need to do anything here, we handle it below
           console.log(err); // eslint-disable-line
         });
 
+        if (!results || !results.data) {
+          setTimeout(() => {
+            // artificially delay displaying the data
+            containerEl.classList.add("search--showResults");
+            store.setError(true);
+            store.setIsLoading(false);
+          }, 2000);
+
+          return;
+        }
+
         setTimeout(() => {
-          store.setSearchResults(results);
+          // artificially delay displaying the data
+          store.setSearchResults(results.data[0]); // an error boundary is needed to catch an error if the API response changes
           containerEl.classList.add("search--showResults");
           store.setIsLoading(false);
         }, 2000);
-      } else {
-        // this clause triggers a re-render
-        store.setSearchResults([]);
       }
     }
 
@@ -44,25 +57,29 @@ function SearchInput() {
     >
       <Input
         type="search"
-        className="bg-light-red white placeholder-white bn outline-0 h-100 ma0 z-10 f-20 trans-o-placeholder trans-duration-placeholder trans-duration search-input"
-        placeholder="What are you searching for today?"
+        className="br-tl-2 br-bl-2 bg-light-red white placeholder-white bn outline-0 h-100 ma0 z-10 f-20 trans-o-placeholder trans-duration-placeholder trans-duration search-input"
+        placeholder="Please enter your postcode (e.g 'SE11')"
         id="search"
         value={inputValue}
         // add validation to remove spaces
         onChange={e => setInputValue(e.target.value)}
       />
       <Button
-        className="bg-light-red bn h-100 db pa0 ma0 tc pointer outline-0 minw-60 search-button"
+        className="trans-br-bl trans-br-tl bg-light-red bn h-100 db pa0 ma0 tc pointer outline-0 minw-60 search-button"
         // eslint-disable-next-line
         onClick={() => {
-          setInputValue("");
-
-          if (divRef.current.classList.contains("search")) {
-            return divRef.current.classList.toggle("search--open");
+          if (!divRef.current.classList.contains("search--open")) {
+            divRef.current.classList.add("search--open");
+            return;
           }
 
-          divRef.current.classList.toggle("search");
-          divRef.current.classList.remove("search--showResults");
+          store.setSearchResults([]);
+          store.setError(false);
+          divRef.current.classList.remove(
+            "search--showResults",
+            "search--open"
+          );
+          setInputValue("");
         }}
         type="button"
       >

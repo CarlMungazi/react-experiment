@@ -2,6 +2,11 @@
 	transform: translate3d(0, 40%, 0)
 }
 
+.search .search-button {
+	border-radius: .25rem;
+	transition-duration: var(--transition-duration-5);
+}
+
 .search-input {
 	width: 0%;
 	padding: 0;
@@ -16,6 +21,12 @@
 
 .search--showResults {
 	transform: translate3d(0, 0, 0)
+}
+
+.search--open .search-button {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	transition-duration: var(--transition-duration);
 }
 
 .search--open .search-button svg {

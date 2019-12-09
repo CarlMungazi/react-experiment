@@ -7,13 +7,14 @@ function Card({ tag: Element, children, className }) {
 
 Card.propTypes = {
   tag: PropTypes.oneOf(["div", "section", "article"]),
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   className: PropTypes.string
 };
 
 Card.defaultProps = {
   tag: "div",
-  className: ""
+  className: "",
+  children: null
 };
 
 export default Card;

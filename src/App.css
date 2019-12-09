@@ -2,7 +2,8 @@
 
 :root {
   --transition-duration-half: .5s;
-	--transition-duration: 1s;
+  --transition-duration: 1s;
+  --transition-duration-5: 5s;
 	--trans-delay: .5s;
 }
 
@@ -45,6 +46,10 @@
   min-width: 3.75rem;
 }
 
+.flex-basis-30 {
+  flex-basis: 30%;
+}
+
 .flex-basis-45 {
   flex-basis: 45%;
 }
@@ -63,6 +68,24 @@
 .bg-white:after {
   background-color: #fff;
 } 
+
+/* BORDERS */
+
+.br-tl-2 {
+  border-top-left-radius: .25rem;
+}
+
+.br-bl-2 {
+  border-bottom-left-radius: .25rem;
+}
+
+.br-tr-2 {
+  border-top-right-radius: .25rem;
+}
+
+.br-br-2 {
+  border-bottom-right-radius: .25rem;
+}
 
 /**
   ANIMATIONS 
@@ -85,6 +108,15 @@
 .trans-o-placeholder::placeholder {
   transition-property: opacity;
 }
+
+.trans-br-bl {
+  transition-property: border-bottom-left-radius;
+}
+
+.trans-br-tl {
+  transition-property: border-top-left-radius;
+}
+
 
 /* duration */
 .trans-duration,

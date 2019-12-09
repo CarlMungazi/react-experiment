@@ -14,6 +14,7 @@ export const withAppContext = Component => props => (
 export const AppStore = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <AppContext.Provider
@@ -21,7 +22,9 @@ export const AppStore = ({ children }) => {
         searchResults,
         setSearchResults,
         isLoading,
-        setIsLoading
+        setIsLoading,
+        error,
+        setError
       }}
     >
       {children}

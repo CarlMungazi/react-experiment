@@ -14,7 +14,7 @@ import imports from 'assets/imports.png';
 import coal from 'assets/coal.png';
 
 import { AppContext } from "state";
-import { Loader } from 'components';
+import { Loader, Card } from 'components';
 
 const ICONS = {
   wind,
@@ -28,57 +28,52 @@ const ICONS = {
   coal
 }
 
-const RegionalInfo = ({label, data, style}) => (
-  <div className={`flex-basis-45 f4 ${style}`}>
-    <span> { label }: </span>
-    <span> { data } </span>
-  </div>
+const RegionalInfo = ({label, data}) => (
+  <span className="white pa1 f4 bg-blue"> { label }: { data } </span>
 );
 
 const FuelItem = ({ data }) => (
-  <li className="flex items-center lh-copy ph0 pv1 bb b--black-10">
-    <img className="w2 h2 br-100" src={ICONS[data.fuel]}/>
-    <span className="flex-auto ttc">{ data.fuel}</span>
-    <span className="">{ data.perc}</span>
+  <li className="mt3 flex-basis-30 flex flex-column items-center br3 pa2 b--blue b--solid ba bg-light-red">
+    <img className="w2 h2 br-100 mb3" src={ICONS[data.fuel]}/>
+    <span className="ttc">{`${data.fuel} - ${data.perc}%`}</span>
   </li>
 )
 
 const SearchResult = () => {
   const store = useContext(AppContext);
 
-  // can use optional chaining here
+  if (store.error) {
+    return (
+      <Card tag="section" className="results--show o-100 trans-duration-half trans-delay br3 bg-white pa3 mt3">
+        <p className="mt0 mb0">Something went wrong. Please try again.</p>
+      </Card>
+    );
+  }
+
+  // can use optional chaining here in place of the if clause?
   if (store.searchResults.data) {
-    const generation = store.searchResults.data[0];
+    const generation = store.searchResults;
     
   // maybe have one div and change classname and only show content when data exists
     return (
-      <section className="results--show o-100 trans-duration-half trans-delay br3 bg-white pa3 mt4">
-        <div className="flex flex-wrap justify-between">
-          <RegionalInfo label="Postcode" data={generation.postcode} style='mb2' />
-          <RegionalInfo label="Region" data={generation.shortname} style='mb2' />
-          <RegionalInfo label="Forecast" data={generation.data[0].intensity.forecast} />
-          <RegionalInfo label="Index" data={generation.data[0].intensity.index} />
+      <Card tag="section" className="results--show o-100 trans-duration-half trans-delay br3 bg-white pa3 mt3">
+        <div className="flex flex-wrap justify-between mh2">
+          <RegionalInfo label="Postcode" data={generation.postcode} />
+          <RegionalInfo label="Region" data={generation.shortname} />
         </div>
-        <ul className="list pa0 mb0 mt3">
-          { generation.data[0].generationmix.map(item => <FuelItem data={item} /> )}
+        <ul className="list pa0 mv0 flex justify-around flex-wrap flex-row">
+          { generation.data[0].generationmix.map(item => <FuelItem key={item.fuel} data={item} /> )}
         </ul>
-      </section>
+      </Card>
     );
   }
 
   return (
     <>
-    <section className="results--hide o-0 trans-duration-half" />
-    {/* turn into component & add logic to show different loaders each time */}
-    {/* also need to add logic to artificially delay api response so loader is shown. possible hook use? */}
+    <Card tag="section" className="results--hide o-0 trans-duration-half" />
     { store.isLoading && <Loader variant="bars" /> }
-    {/* <Loader variant="bars" /> */}
     </>
   );
 };
-
-SearchResult.propTypes = {};
-
-SearchResult.defaultProps = {};
 
 export default SearchResult;

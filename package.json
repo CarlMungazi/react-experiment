@@ -33,7 +33,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run test:nowatch",
       "pre-commit": "yarn run lint"
     }
   },

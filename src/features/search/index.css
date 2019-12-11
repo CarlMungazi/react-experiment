@@ -1,0 +1,45 @@
+.search {
+	transform: translate3d(0, 40%, 0)
+}
+
+.search .search-button {
+	border-radius: .25rem;
+	transition-duration: var(--transition-duration-5);
+}
+
+.search-input {
+	width: 0%;
+	padding: 0;
+	transition-property: width, padding-left;
+}
+
+.search-input::placeholder {
+	opacity: 0;
+}
+
+/* Open state */
+
+.search--showResults {
+	transform: translate3d(0, 0, 0)
+}
+
+.search--open .search-button {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	transition-duration: var(--transition-duration);
+}
+
+.search--open .search-button svg {
+  transform: rotate(45deg);
+}
+
+.search--open .search-input {
+	width: 100%;
+	transition-property: width;
+	padding-left: .5rem;
+}
+
+.search--open .search-input::placeholder {
+	opacity: 1;
+	transition-delay: var(--trans-delay);
+}

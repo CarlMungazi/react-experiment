@@ -1,22 +1,134 @@
-.App {
-  text-align: center;
+/* all rem values based on 16px root font */
+
+:root {
+  --transition-duration-half: .5s;
+  --transition-duration: 1s;
+  --transition-duration-5: 5s;
+	--trans-delay: .5s;
 }
 
-.App-logo {
-  height: 40vmin;
+/* TACHYON MODIFIERS */
+
+/* SPACING */
+.ma-auto {
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.pl--10 { /* 10px */
+  padding-left: 0.625rem; 
 }
 
-.App-link {
-  color: #09d3ac;
+/* svgs */
+.fill-blue {
+  fill: #357EDD;
+}
+
+/* FORMS */
+.placeholder-white::placeholder {
+  color: rgba(255,255,255, .5);
+}
+
+/* z-index */
+.z-10 {
+  z-index: 10;
+}
+
+.f-20 { /* 20px */
+  font-size: 1.25rem 
+}
+
+/* WIDTH */
+.w0 {
+  width: 0%;
+}
+
+.minw-60 {
+  min-width: 3.75rem;
+}
+
+.flex-basis-30 {
+  flex-basis: 30%;
+}
+
+.flex-basis-45 {
+  flex-basis: 45%;
+}
+
+/* OPACITY */
+.o-0-placeholder {
+  opacity: 0;
+}
+
+.o-100-placeholder {
+  opacity: 1;
+}
+
+/* COLORS */
+.bg-white:before,
+.bg-white:after {
+  background-color: #fff;
+} 
+
+/* BORDERS */
+
+.br-tl-2 {
+  border-top-left-radius: .25rem;
+}
+
+.br-bl-2 {
+  border-bottom-left-radius: .25rem;
+}
+
+.br-tr-2 {
+  border-top-right-radius: .25rem;
+}
+
+.br-br-2 {
+  border-bottom-right-radius: .25rem;
+}
+
+/**
+  ANIMATIONS 
+**/
+
+/* properties */
+.trans-w {
+  transition-property: width;
+}
+
+.trans-transform {
+  transition-property: transform;
+}
+
+.trans-pl {
+  transition-property: padding-left;
+}
+
+.trans-o,
+.trans-o-placeholder::placeholder {
+  transition-property: opacity;
+}
+
+.trans-br-bl {
+  transition-property: border-bottom-left-radius;
+}
+
+.trans-br-tl {
+  transition-property: border-top-left-radius;
+}
+
+
+/* duration */
+.trans-duration,
+.trans-duration-placeholder::placeholder {
+  transition-duration: var(--transition-duration);
+}
+
+.trans-duration-half {
+  transition-duration: var(--transition-duration-half);
+}
+
+.trans-delay,
+.trans-delay-placeholder::placeholder {
+  transition-delay: var(--trans-delay);
 }
